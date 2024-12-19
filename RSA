@@ -74,8 +74,8 @@ root.geometry("600x400")
 public_key = tk.StringVar()
 private_key = tk.StringVar()
 
-tk.Label(root, text="Ввод текста:").pack(anchor="w")
-input_text = tk.Text(root, height=5, width=70)
+tk.Label(root, text="Сообщение:").pack(anchor="w")
+input_text = tk.Text(root, height=1, width=70)
 input_text.pack()
 
 tk.Label(root, text="Вывод текста (зашифрованного/расшифрованного):").pack(anchor="w")
@@ -83,8 +83,8 @@ output_text = tk.Text(root, height=5, width=70)
 output_text.pack()
 
 tk.Button(root, text="Сгенерировать ключи", command=generate_keys).pack(pady=5)
-tk.Label(root, textvariable=public_key, fg="blue").pack()
-tk.Label(root, textvariable=private_key, fg="blue").pack()
+tk.Label(root, textvariable=public_key).pack()
+tk.Label(root, textvariable=private_key).pack()
 
 tk.Button(root, text="Зашифровать", command=encrypt).pack(pady=5)
 tk.Button(root, text="Расшифровать", command=decrypt).pack(pady=5)
