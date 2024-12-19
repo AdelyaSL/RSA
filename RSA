@@ -44,26 +44,26 @@ def generate_keys():
 
 def encrypt():
     try:
-        plaintext = input_text.get("1.0", tk.END).strip()
+        plaintext = entry_message.get().strip()
         if not plaintext:
             messagebox.showerror("Ошибка", "Введите текст для шифрования!")
             return
         ciphertext = [pow(ord(char), e, n) for char in plaintext]
-        output_text.delete("1.0", tk.END)
-        output_text.insert(tk.END, " ".join(map(str, ciphertext)))
+        entry_result.delete("1.0", tk.END)
+        entry_result.insert(tk.END, " ".join(map(str, ciphertext)))
     except Exception as ex:
         messagebox.showerror("Ошибка", f"Произошла ошибка: {ex}")
 
 def decrypt():
     try:
-        ciphertext = output_text.get("1.0", tk.END).strip()
+        ciphertext = entry_result.get("1.0", tk.END).strip()
         if not ciphertext:
             messagebox.showerror("Ошибка", "Введите текст для расшифровки!")
             return
         ciphertext = list(map(int, ciphertext.split()))
         plaintext = "".join([chr(pow(char, d, n)) for char in ciphertext])
-        output_text.delete("1.0", tk.END)
-        output_text.insert(tk.END, plaintext)
+        entry_result.delete("1.0", tk.END)
+        entry_result.insert(tk.END, plaintext)
     except Exception as ex:
         messagebox.showerror("Ошибка", f"Произошла ошибка: {ex}")
 
@@ -74,19 +74,21 @@ root.geometry("600x400")
 public_key = tk.StringVar()
 private_key = tk.StringVar()
 
-tk.Label(root, text="Сообщение:").pack(anchor="w")
-input_text = tk.Text(root, height=1, width=70)
-input_text.pack()
-
-tk.Label(root, text="Вывод текста (зашифрованного/расшифрованного):").pack(anchor="w")
-output_text = tk.Text(root, height=5, width=70)
-output_text.pack()
+label_message = tk.Label(root, text="Сообщение:")
+label_message.pack()
+entry_message = tk.Entry(root, width=70)
+entry_message.pack(padx=10, pady=5)
 
 tk.Button(root, text="Сгенерировать ключи", command=generate_keys).pack(pady=5)
 tk.Label(root, textvariable=public_key).pack()
 tk.Label(root, textvariable=private_key).pack()
 
 tk.Button(root, text="Зашифровать", command=encrypt).pack(pady=5)
+
+tk.Label(root, text="Вывод текста (зашифрованного/расшифрованного):").pack(anchor="w", padx=10, pady=5) 
+entry_result = tk.Text(root, height=5, width=70)
+entry_result.pack(padx=10, pady=5)
+
 tk.Button(root, text="Расшифровать", command=decrypt).pack(pady=5)
 
 root.mainloop()
