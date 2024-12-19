@@ -84,11 +84,10 @@ tk.Label(root, textvariable=public_key).pack()
 tk.Label(root, textvariable=private_key).pack()
 
 tk.Button(root, text="Зашифровать", command=encrypt).pack(pady=5)
+tk.Button(root, text="Расшифровать", command=decrypt).pack(pady=5)
 
-tk.Label(root, text="Вывод текста (зашифрованного/расшифрованного):").pack(anchor="w", padx=10, pady=5) 
+tk.Label(root, text="Вывод текста (зашифрованного/расшифрованного):").pack(anchor="w", padx=10, pady=5)
 entry_result = tk.Text(root, height=5, width=70)
 entry_result.pack(padx=10, pady=5)
-
-tk.Button(root, text="Расшифровать", command=decrypt).pack(pady=5)
 
 root.mainloop()
